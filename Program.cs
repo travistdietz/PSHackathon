@@ -1,6 +1,12 @@
+using PSProductService.Repositories;
+using PSProductService.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add dependencies to the container.
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductSelector, ProductSelector>();
+builder.Services.AddScoped<IQuestionGenerator, QuestionGenerator>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
