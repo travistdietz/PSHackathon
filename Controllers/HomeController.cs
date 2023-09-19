@@ -22,13 +22,13 @@ namespace PSProductService.Controllers
         [AllowAnonymous]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("{eventType}")]
+        [HttpPost("")]
         public async Task<ActionResult<string>> GetAll(string eventType)
         {
             return Ok(await GenerateResponse(eventType));
         }
 
-        async Task<string> GenerateResponse(string eventType)
+        async Task<IEnumerable<string>> GenerateResponse(string eventType)
         {
             var apiKey = _configuration.GetValue<string>("OpenAI:ApiKey");
             var client = new OpenAI.OpenAIClient(apiKey);
@@ -40,7 +40,12 @@ namespace PSProductService.Controllers
             var chatRequest = new ChatRequest(messages, Model.GPT3_5_Turbo);
             var result = await client.ChatEndpoint.GetCompletionAsync(chatRequest);
 
-            return result.Choices[0].Message;
+            return new List<string>
+            {
+                result.Choices[0].Message,
+                "Nike Polo",
+                "Under Armour Polo"
+            };
         }
     }
 }
