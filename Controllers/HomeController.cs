@@ -6,7 +6,7 @@ using OpenAI.Models;
 namespace PSProductService.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("/")]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public class ProductController : Controller
     {
