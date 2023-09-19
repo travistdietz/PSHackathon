@@ -36,9 +36,17 @@ namespace PSProductService.Controllers
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpPost("")]
-        public async Task<ActionResult<string>> GetAll(string eventType)
+        public async Task<ActionResult<ProductResponse>> GetAll(string eventType)
         {
-            return Ok(await GenerateResponse(eventType));
+            try
+            {
+                return Ok(await GenerateResponse(eventType));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                return Ok(e.Message);
+            }
         }
 
         async Task<ProductResponse> GenerateResponse(string eventType)
