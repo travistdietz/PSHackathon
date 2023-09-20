@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductSelector, ProductSelector>();
 builder.Services.AddScoped<IQuestionGenerator, QuestionGenerator>();
+builder.Services.AddScoped<IAiService, AiService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
