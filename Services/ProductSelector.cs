@@ -5,14 +5,49 @@ namespace PSProductService.Services;
 
 public interface IProductSelector
 {
-    Task<ProductResponse> Get(string question, string result, List<Product> products);
+    Task<ProductResponse> Get(string question, string answer, List<Product> products);
+    Task<RefinedProductResponse> Get(string requestRefiningQuestion, string answer, List<Product> products, List<ChatRequest> chats);
 }
 
 public class ProductSelector : IProductSelector
 {
-    public async Task<ProductResponse> Get(string question, string result, List<Product> products)
+    public async Task<ProductResponse> Get(string question, string answer, List<Product> products)
     {
-        var productResponses = JsonSerializer.Deserialize<AIResponse>(result);
+        var productDtos = GetProducts(answer, products);
+
+        return new ProductResponse
+        {
+            Question = question,
+            Answer = answer,
+            Products = productDtos
+        };
+    }
+
+    public async Task<RefinedProductResponse> Get(string question, string answer, List<Product> products, List<ChatRequest> chats)
+    {
+        var productDtos = GetProducts(answer, products);
+
+        chats.Add(new ChatRequest
+        {
+            IsQuestion = true,
+            Text = question
+        });
+        chats.Add(new ChatRequest
+        {
+            IsQuestion = false,
+            Text = answer
+        });
+
+        return new RefinedProductResponse
+        {
+            ChatLog = chats,
+            Products = productDtos
+        };
+    }
+
+    IEnumerable<ProductDto> GetProducts(string answer, List<Product> products)
+    {
+        var productResponses = JsonSerializer.Deserialize<AIResponse>(answer);
         var productDtos = new List<ProductDto>();
 
         foreach (var productResponse in productResponses.products)
@@ -29,21 +64,6 @@ public class ProductSelector : IProductSelector
             });
         }
 
-        return new ProductResponse
-        {
-            Question = question,
-            Products = productDtos
-        };
-    }
-
-    public class AIProduct
-    {
-        public string name { get; set; }
-        public string description { get; set; }
-    }
-
-    public class AIResponse
-    {
-        public List<AIProduct> products { get; set; }
+        return productDtos;
     }
 }
