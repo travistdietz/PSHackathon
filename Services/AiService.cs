@@ -20,7 +20,7 @@ public class AiService : IAiService
     {
         _configuration = configuration;
         var apiKey = _configuration.GetValue<string>("OpenAI:ApiKey");
-        Client = new OpenAI.OpenAIClient(apiKey);
+        Client = new OpenAIClient(apiKey);
     }
 
     public async Task<string> AskQuestion(string question)

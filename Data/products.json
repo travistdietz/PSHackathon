@@ -1,0 +1,37 @@
+[
+  {
+    "Name": "Nike Polo",
+    "Description": "product #1",
+    "Price": 15,
+    "Vendor": "test",
+    "ImageUrl": "image.jpg"
+  },
+  {
+    "Name": "Stress Ball",
+    "Description": "product #2",
+    "Price": 15,
+    "Vendor": "test",
+    "ImageUrl": "image.jpg"
+  },
+  {
+    "Name": "Fidget Spinner",
+    "Description": "product #3",
+    "Price": 15,
+    "Vendor": "test",
+    "ImageUrl": "image.jpg"
+  },
+  {
+    "Name": "Coaster",
+    "Description": "product #4",
+    "Price": 15,
+    "Vendor": "test",
+    "ImageUrl": "image.jpg"
+  },
+  {
+    "Name": "Yeti Mug",
+    "Description": "product #5",
+    "Price": 15,
+    "Vendor": "test",
+    "ImageUrl": "image.jpg"
+  }
+]

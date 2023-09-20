@@ -1,4 +1,5 @@
 ﻿using PSProductService.Models;
+using System.Text.Json;
 
 namespace PSProductService.Repositories;
 
@@ -11,13 +12,7 @@ public class ProductRepository : IProductRepository
 {
     public async Task<IEnumerable<Product>> GetRandomProducts()
     {
-        return new List<Product>
-        {
-            new() { Description = "product #1", Name = "Nike Polo", ImageUrl = "image.jpg", Price = 15, Vendor = "test"},
-            new() { Description = "product #2", Name = "Stress Ball", ImageUrl = "image.jpg", Price = 15, Vendor = "test"},
-            new() { Description = "product #3", Name = "Fidget Spinner", ImageUrl = "image.jpg", Price = 15, Vendor = "test"},
-            new() { Description = "product #4", Name = "Coaster", ImageUrl = "image.jpg", Price = 15, Vendor = "test"},
-            new() { Description = "product #5", Name = "Yeti Mug", ImageUrl = "image.jpg", Price = 15, Vendor = "test"}
-        };
+        var jsonText = File.ReadAllText("data/products.json");
+        return JsonSerializer.Deserialize<List<Product>>(jsonText);
     }
 }

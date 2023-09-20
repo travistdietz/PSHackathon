@@ -52,7 +52,7 @@ namespace PSProductService.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e.Message);
-                return Ok(e.Message);
+                return Ok($"We could not find products based on that criteria: {e.Message}");
             }
         }
 
@@ -78,7 +78,7 @@ namespace PSProductService.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e.Message);
-                return Ok(e.Message);
+                return Ok($"We could not find products based on that criteria: {e.Message}");
             }
         }
     }
