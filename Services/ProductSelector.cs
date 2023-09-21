@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using DuoVia.FuzzyStrings;
 using PSProductService.Models;
 
 namespace PSProductService.Services;
@@ -50,20 +51,30 @@ public class ProductSelector : IProductSelector
         var productResponses = JsonSerializer.Deserialize<AIResponse>(answer);
         var productDtos = new List<ProductDto>();
 
-        foreach (var productResponse in productResponses.products)
+        try
         {
-            var product = products.Single(x => x.Name == productResponse.name);
-            productDtos.Add(new ProductDto
+            foreach (var productResponse in productResponses.products)
             {
-                Description = product.Description,
-                Name = product.Name,
-                EventSpecificDescription = productResponse.description,
-                ImageUrl = product.ImageUrl,
-                Price = product.Price,
-                Vendor = product.Vendor
-            });
+                var names = products.Select(x => x.Name).ToArray();
+                var mostSimilar = names.OrderBy(s => s.LevenshteinDistance(productResponse.name)).First();
+                var product = products.First(x => x.Name == mostSimilar);
+                productDtos.Add(new ProductDto
+                {
+                    Description = product.Description,
+                    Name = product.Name,
+                    EventSpecificDescription = productResponse.description,
+                    ImageUrl = product.ImageUrl,
+                    Price = product.Price,
+                    Vendor = product.Vendor
+                });
+            }
+
+            return productDtos;
+        }
+        catch (Exception e)
+        {
+            throw new Exception($"{e.Message} - {answer}");
         }
 
-        return productDtos;
     }
 }

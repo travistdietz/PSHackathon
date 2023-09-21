@@ -10,7 +10,7 @@ public class QuestionGenerator : IQuestionGenerator
     public string GenerateProductForEvent(string eventType, string productList)
     {
         //var randomProducts = GetStringArrayOfRandomData(100);
-        return $"Give me 2 products from the following list: {productList}. " +
+        return $"Give me between 10 to 15 products from the following list: {productList}. " +
                $"Products should be the most applicable for the following type of event: {eventType}.  " +
                $"Return the results in the following json format: " +
                $"{{ \"products\": [ {{ \"name\": {{name}}, \"description\": {{description}} ]}} " +

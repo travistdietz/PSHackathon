@@ -13,6 +13,7 @@ public class ProductRepository : IProductRepository
     public async Task<IEnumerable<Product>> GetRandomProducts()
     {
         var jsonText = File.ReadAllText("data/products.json");
-        return JsonSerializer.Deserialize<List<Product>>(jsonText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var products = JsonSerializer.Deserialize<List<Product>>(jsonText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        return products.Where(x => !x.Name.Contains(",")).Take(350);
     }
 }
