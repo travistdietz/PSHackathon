@@ -43,7 +43,7 @@ namespace PSProductService.Controllers
         {
             try
             {
-                var products = (await _productRepository.GetRandomProducts()).ToList();
+                var products = (await _productRepository.GetRandomProducts()).Take(400).ToList();
                 var question = _questionGenerator.GenerateProductForEvent(eventDescription, string.Join(",", products.Select(x => x.Name)));
                 var answer = await _aiService.AskQuestion(question);
                 var response = await _productSelector.Get(question, answer, products);
