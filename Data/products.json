@@ -33,5 +33,40 @@
     "Price": 15,
     "Vendor": "test",
     "ImageUrl": "image.jpg"
+  },
+  {
+    "Name": "Titleist Golf Ball",
+    "Description": "product #6",
+    "Price": 15,
+    "Vendor": "test",
+    "ImageUrl": "image.jpg"
+  },
+  {
+    "Name": "Golf Tees",
+    "Description": "product #7",
+    "Price": 15,
+    "Vendor": "test",
+    "ImageUrl": "image.jpg"
+  },
+  {
+    "Name": "Coozie",
+    "Description": "product #8",
+    "Price": 15,
+    "Vendor": "test",
+    "ImageUrl": "image.jpg"
+  },
+  {
+    "Name": "Bic Stic Pen",
+    "Description": "product #9",
+    "Price": 15,
+    "Vendor": "test",
+    "ImageUrl": "image.jpg"
+  },
+  {
+    "Name": "Nike Hat",
+    "Description": "product #10",
+    "Price": 15,
+    "Vendor": "test",
+    "ImageUrl": "image.jpg"
   }
 ]
