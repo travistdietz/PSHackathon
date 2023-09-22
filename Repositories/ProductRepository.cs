@@ -14,6 +14,6 @@ public class ProductRepository : IProductRepository
     {
         var jsonText = File.ReadAllText("data/products.json");
         var products = JsonSerializer.Deserialize<List<Product>>(jsonText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-        return products.Where(x => !x.Name.Contains(",")).Take(350);
+        return products.Take(200);
     }
 }

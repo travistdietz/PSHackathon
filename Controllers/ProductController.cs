@@ -71,8 +71,9 @@ namespace PSProductService.Controllers
             try
             {
                 var products = (await _productRepository.GetRandomProducts()).ToList();
-                var answer = await _aiService.AskQuestionWithPreviousContext(request.RefiningQuestion, request.ChatLog);
-                var response = await _productSelector.Get(request.RefiningQuestion, answer, products, request.ChatLog);
+                var question = _questionGenerator.GenerateRefinedQuestion(request.RefiningQuestion);
+                var answer = await _aiService.AskQuestionWithPreviousContext(question, request.ChatLog);
+                var response = await _productSelector.Get(question, answer, products, request.ChatLog);
                 return Ok(response);
             }
             catch (Exception e)

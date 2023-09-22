@@ -3,6 +3,7 @@
 public interface IQuestionGenerator
 {
     string GenerateProductForEvent(string eventType, string productList);
+    string GenerateRefinedQuestion(string refiningQuestion);
 }
 
 public class QuestionGenerator : IQuestionGenerator
@@ -15,6 +16,11 @@ public class QuestionGenerator : IQuestionGenerator
                $"Return the results in the following json format: " +
                $"{{ \"products\": [ {{ \"name\": {{name}}, \"description\": {{description}} ]}} " +
                $"where description is the reason the product is good for this event.";
+    }
+
+    public string GenerateRefinedQuestion(string refiningQuestion)
+    {
+        return $"Using the previous list, {refiningQuestion}";
     }
 
     string GetStringArrayOfRandomData(int numberToGenerate)
