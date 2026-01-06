@@ -1,5 +1,6 @@
 using PSProductService.Repositories;
 using PSProductService.Services;
+using PSProductService.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductSelector, ProductSelector>();
 builder.Services.AddScoped<IQuestionGenerator, QuestionGenerator>();
-builder.Services.AddScoped<IAiService, AiService>();
+builder.Services.AddScoped<IAiService, ChatGPTService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

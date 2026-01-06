@@ -1,22 +1,17 @@
 ﻿using OpenAI;
 using OpenAI.Chat;
 using OpenAI.Models;
+using PSProductService.Services.Interfaces;
 using ChatRequest = PSProductService.Models.ChatRequest;
 
 namespace PSProductService.Services;
 
-public interface IAiService
-{
-    Task<string> AskQuestion(string question);
-    Task<string> AskQuestionWithPreviousContext(string refiningQuestion, IEnumerable<ChatRequest> chats);
-}
-
-public class AiService : IAiService
+public class ChatGPTService : IAiService
 {
     readonly IConfiguration _configuration;
     readonly OpenAIClient Client;
 
-    public AiService(IConfiguration configuration)
+    public ChatGPTService(IConfiguration configuration)
     {
         _configuration = configuration;
         var apiKey = _configuration.GetValue<string>("OpenAI:ApiKey");

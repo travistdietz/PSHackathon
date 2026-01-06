@@ -1,14 +1,9 @@
 ﻿using System.Text.Json;
 using DuoVia.FuzzyStrings;
 using PSProductService.Models;
+using PSProductService.Services.Interfaces;
 
 namespace PSProductService.Services;
-
-public interface IProductSelector
-{
-    Task<ProductResponse> Get(string question, string answer, List<Product> products);
-    Task<RefinedProductResponse> Get(string requestRefiningQuestion, string answer, List<Product> products, List<ChatRequest> chats);
-}
 
 public class ProductSelector : IProductSelector
 {

@@ -1,10 +1,6 @@
-﻿namespace PSProductService.Services;
+﻿using PSProductService.Services.Interfaces;
 
-public interface IQuestionGenerator
-{
-    string GenerateProductForEvent(string eventType, string productList);
-    string GenerateRefinedQuestion(string refiningQuestion);
-}
+namespace PSProductService.Services;
 
 public class QuestionGenerator : IQuestionGenerator
 {

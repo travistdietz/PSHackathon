@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PSProductService.Models;
 using PSProductService.Repositories;
-using PSProductService.Services;
+using PSProductService.Services.Interfaces;
 
 namespace PSProductService.Controllers
 {
